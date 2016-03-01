@@ -1,0 +1,38 @@
+@import "bootstrap.css";
+#wrapper {
+  min-width: 320px;
+}
+#switch-buttons,
+h2 {
+  margin: 20px 0;
+}
+.star {
+  color: red;
+}
+form input#last-name.ng-valid.ng-dirty,
+form input#first-name.ng-valid.ng-dirty,
+form input#middle-name.ng-valid.ng-dirty {
+  background: HoneyDew;
+}
+form input#last-name.ng-invalid.ng-dirty,
+form input#first-name.ng-invalid.ng-dirty,
+form input#middle-name.ng-invalid.ng-dirty {
+  background: MistyRose;
+}
+table * {
+  text-align: center;
+  vertical-align: middle !important;
+}
+table th,
+table td {
+  border: 1px solid #CCC !important;
+}
+table th:last-child,
+table td:last-child {
+  border: none !important;
+  text-align: left;
+}
+table th button,
+table td button {
+  margin: 5px;
+}

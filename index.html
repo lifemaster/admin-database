@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <title>Список пользователей</title>
+  </head>
+  <body ng-app="usersListApp" ng-controller="userListCtrl">
+    <div id="wrapper" class="container-fluid" ng-switch on="mode.value">
+      <div class="btn-group" id="switch-buttons">
+        <button class="btn btn-default" ng-class="options[0].btnClass" ng-click="switchDisplayData(0)">
+          {{options[0].display}}
+        </button>
+        <button class="btn btn-default" ng-class="options[1].btnClass" ng-click="switchDisplayData(1)">
+          {{options[1].display}}
+        </button>
+      </div>
+      <div ng-switch-when="add">
+        <h2 class="text-center">Добавление пользователя</h2>
+        <div ng-include="addUserForm"></div>
+      </div>
+      <div ng-switch-when="edit">
+        <h2 class="text-center">Редактирование пользователя</h2>
+        <div ng-include="editUserForm"></div>
+      </div>
+      <div ng-switch-when="list">
+        <h2 class="text-center">Список пользователей</h2>
+        <p class="text-danger text-center lead" ng-hide="data.length">Список пользователей пуст!</p>
+        <table ng-show="data.length" class="table">
+          <thead>
+            <tr>
+              <th>№ п/п</th>
+              <th>ФИО</th>
+              <th>Должность</th>
+              <th>Телефон</th>
+              <th>Email</th>
+              <th>Пароль к почте</th>
+              <th>Пользователь домена</th>
+              <th>Пароль домена</th>
+              <th>MAC-адрес</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in data track by $index">
+              <td>{{$index + 1}}</td>
+              <td>{{user.lastName + ' ' + user.firstName + ' ' + user.middleName}}</td>
+              <td>{{user.position}}</td>
+              <td>{{user.phone}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.email_pass}}</td>
+              <td>{{user.domain_name}}</td>
+              <td>{{user.domain_pass}}</td>
+              <td>{{user.mac_address}}</td>
+              <td>
+                <button class="btn btn-info" ng-click="changeUser($index)">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="removeUser($index)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
